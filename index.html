@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#24452F">
+<title>Momo's Temple Dash</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="game" aria-label="Momo's Temple Dash game view"></canvas>
+<div id="hurt"></div>
+<div class="count" id="countdown" aria-live="assertive" hidden></div>
+<div class="mult-flash" id="multFlash" aria-hidden="true"></div>
+
+<div id="hud" hidden>
+  <div class="hud-top">
+    <div>
+      <div class="score" id="score">0</div>
+      <div class="dist" id="dist">0 m</div>
+      <div class="combo"><span class="mult" id="mult" aria-label="Score multiplier">x1</span><span class="combo-count" id="comboCount"></span></div>
+      <div class="lives" id="lives" aria-label="Lives left"></div>
+    </div>
+    <div class="hud-right">
+      <div class="pill" aria-label="Bananas collected">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5c1 7 5 12 13 12 1 0 2 1 1 2-3 2-12 2-15-5C3 11 3 7 4 5c0-1 1-1 1 0z" fill="#F5C518" stroke="#8A6406" stroke-width="1.2" stroke-linejoin="round"/><path d="M4 4.5 3.6 3" stroke="#5C3520" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span id="bananaCount">0</span>
+      </div>
+      <button class="icon-btn" id="muteBtn" aria-label="Mute sound" aria-pressed="false"></button>
+      <button class="icon-btn" id="pauseBtn" aria-label="Pause">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.5" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1.5" fill="currentColor"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="hud-bottom">
+    <div class="tags">
+      <span class="tag" id="magnetTag" hidden>Magnet</span>
+      <span class="tag" id="shieldTag" hidden>Shield on</span>
+    </div>
+    <button class="swing" id="swingBtn" aria-label="Vine swing meter"><span class="fill" id="meterFill"></span><span class="label" id="swingLabel">Vine swing</span></button>
+  </div>
+</div>
+
+<div class="overlay" id="startPanel">
+  <div class="tablet">
+    <h1>Momo's<br>Temple Dash</h1>
+    <p class="lede">Run through the old jungle temple with Momo. Jump the logs, slide under stone beams, and dodge the walls. You have 5 lives. Grab bananas in a row to push your score multiplier up to x4, and fill your meter for a vine swing over everything.</p>
+    <div class="controls">
+      <div><strong>Phone or tablet</strong>Swipe left or right to change lanes. Swipe up to jump, down to slide.</div>
+      <div><strong>Keyboard</strong>Arrow keys or WASD to move. Press E to swing. P pauses.</div>
+    </div>
+    <div class="levels">
+      <button class="level-btn beginner" id="beginnerBtn"><span class="name">Beginner</span><span class="desc">Slow, steady speed the whole way</span><span class="lbest" id="bestBeginner"></span></button>
+      <button class="level-btn normal" id="normalBtn"><span class="name">Normal</span><span class="desc">Starts easy, gets faster as you go</span><span class="lbest" id="bestNormal"></span></button>
+    </div>
+    <button class="ghost" id="scoresBtn">High scores</button>
+  </div>
+</div>
+
+<div class="overlay center" id="boardPanel" hidden>
+  <div class="tablet">
+    <h2>High scores</h2>
+    <div class="tabs" role="group" aria-label="Level">
+      <button class="tab" id="tabBeginner" aria-pressed="false">Beginner</button>
+      <button class="tab" id="tabNormal" aria-pressed="true">Normal</button>
+    </div>
+    <ol class="board" id="menuBoard"></ol>
+    <button class="cta" id="closeBoardBtn">Back</button>
+  </div>
+</div>
+
+<div class="overlay center" id="pausePanel" hidden>
+  <div class="tablet">
+    <h2>Paused</h2>
+    <p class="lede">Momo is catching his breath.</p>
+    <button class="cta" id="resumeBtn">Keep running</button>
+  </div>
+</div>
+
+<div class="overlay center" id="overPanel" hidden>
+  <div class="tablet">
+    <h2 id="overTitle">Momo tripped!</h2>
+    <p class="final" id="finalScore">0</p>
+    <p class="final-label" id="finalLabel">points</p>
+    <dl class="stats">
+      <div><dt>Bananas</dt><dd id="finalBananas">0</dd></div>
+      <div><dt>Distance</dt><dd id="finalDist">0 m</dd></div>
+      <div><dt>Longest streak</dt><dd id="finalStreak">0</dd></div>
+      <div><dt>Best</dt><dd id="finalBest">0</dd></div>
+    </dl>
+    <p class="newbest" id="newBest" hidden>New best score!</p>
+    <div id="nameEntry" hidden>
+      <p class="entry-title">You made the high scores!</p>
+      <p class="entry-hint">Pick 4 letters for your name.</p>
+      <div class="slots" id="slots"></div>
+      <button class="cta" id="saveScoreBtn">Save score</button>
+    </div>
+    <div id="overBoardWrap">
+      <p class="board-title" id="overBoardTitle">High scores</p>
+      <ol class="board" id="overBoard"></ol>
+      <button class="cta" id="againBtn">Run again</button>
+      <button class="ghost" id="levelBtn">Change level</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
