@@ -25,9 +25,12 @@ A 3D endless runner for the browser. Momo the monkey runs through a jungle templ
 ## Project structure
 
 ```
-index.html      Page markup (start screen, HUD, panels)
-css/style.css   All styling
-js/game.js      Game logic, 3D scene, audio, input
+index.html         Page markup (start screen, HUD, panels)
+css/style.css      All styling
+js/game.js         Game logic, 3D scene, audio, input
+favicon.ico        Browser tab icon
+site.webmanifest   Home-screen app metadata (name, icons, theme color)
+icons/             Favicons, home-screen icon, and the link-share thumbnail
 ```
 
 There's no build step. Three.js (r128) and the Google Fonts load from CDNs, so an internet connection is needed on first load.
