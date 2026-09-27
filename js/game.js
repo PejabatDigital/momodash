@@ -1000,13 +1000,13 @@ function swing(){
 }
 function startGame(key){
   ensureAudio();
-  if(state !== 'menu' && state !== 'over') return;
+  if(state !== 'menu' && state !== 'over' && state !== 'paused') return;
   if(entry) return;
   $('boardPanel').hidden = true;
   if(key === 'beginner' || key === 'normal'){ levelKey = key; store.set(LEVEL_KEY, key); }
   reset();
   beginReady(true);
-  $('startPanel').hidden = true; $('overPanel').hidden = true; $('hud').hidden = false;
+  $('startPanel').hidden = true; $('overPanel').hidden = true; $('pausePanel').hidden = true; $('hud').hidden = false;
   if(document.activeElement && document.activeElement.blur) document.activeElement.blur();
 }
 function pause(){
@@ -1025,7 +1025,7 @@ function showMenu(){
   hideCount();
   reset();
   renderBests();
-  $('overPanel').hidden = true; $('hud').hidden = true; $('startPanel').hidden = false;
+  $('overPanel').hidden = true; $('pausePanel').hidden = true; $('hud').hidden = true; $('startPanel').hidden = false;
   $(levelKey === 'beginner' ? 'beginnerBtn' : 'normalBtn').focus();
 }
 function hurt(o){
@@ -1528,6 +1528,8 @@ $('tabBeginner').addEventListener('click', () => { boardTab = 'beginner'; render
 $('tabNormal').addEventListener('click', () => { boardTab = 'normal'; renderScoresTab(); });
 $('resumeBtn').addEventListener('click', resume);
 $('pauseBtn').addEventListener('click', pause);
+$('restartBtn').addEventListener('click', () => startGame(levelKey));
+$('pauseHomeBtn').addEventListener('click', showMenu);
 $('swingBtn').addEventListener('click', () => { swing(); $('swingBtn').blur(); });
 $('muteBtn').addEventListener('click', () => {
   muted = !muted; store.set(MUTE_KEY, muted ? '1' : '0'); ensureAudio(); renderMute(); $('muteBtn').blur();

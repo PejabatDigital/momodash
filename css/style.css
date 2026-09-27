@@ -93,6 +93,7 @@ body{
 .cta{font-family:var(--display);font-size:1.4rem;background:var(--banana);color:#3A2410;border:none;border-radius:999px;
   padding:14px 28px;width:100%;cursor:pointer;box-shadow:0 5px 0 var(--banana-shadow);transition:transform .06s,box-shadow .06s}
 .cta:active{transform:translateY(3px);box-shadow:0 2px 0 var(--banana-shadow)}
+.cta + .cta{margin-top:12px}
 .icon-btn:focus-visible,.swing:focus-visible,.cta:focus-visible{outline:3px solid var(--leaf-deep);outline-offset:3px}
 .levels{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .level-btn{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;border:none;border-radius:20px;
