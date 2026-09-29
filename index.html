@@ -368,18 +368,24 @@ function onSplashDone() {
 
 <div id="hud" hidden>
   <div class="hud-top">
-    <div>
-      <div class="score" id="score">0</div>
-      <div class="dist" id="dist">0 m</div>
-      <div class="combo"><span class="mult" id="mult" aria-label="Score multiplier">x1</span><span class="combo-count" id="comboCount"></span></div>
-      <div class="lives" id="lives" aria-label="Lives left"></div>
+    <div class="hud-left">
+      <div class="pill pill-score" aria-label="Score">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.7-4.9 4.5 1.3 6.5L12 16.9l-5.9 3.3 1.3-6.5-4.9-4.5 6.6-.7z" fill="#F5C518" stroke="#3A2716" stroke-width="1.1" stroke-linejoin="round"/></svg>
+        <span id="score">0</span>
+      </div>
+      <div class="pill pill-combo" aria-label="Multiplier and streak">
+        <span class="mult" id="mult">x1</span>
+        <span class="streak"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3-2 4-2 7a3 3 0 0 0 6 0c1 1 1.5 2.5 1.5 4a5.5 5.5 0 1 1-11 0C6.5 8 9 6 12 2z" fill="#F2722B" stroke="#8A3B0E" stroke-width=".8"/></svg><span id="comboCount">0</span></span>
+      </div>
+      <div class="pill pill-lives">
+        <div class="lives" id="lives" aria-label="Lives left"></div>
+      </div>
     </div>
     <div class="hud-right">
       <div class="pill" aria-label="Bananas collected">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5c1 7 5 12 13 12 1 0 2 1 1 2-3 2-12 2-15-5C3 11 3 7 4 5c0-1 1-1 1 0z" fill="#F5C518" stroke="#8A6406" stroke-width="1.2" stroke-linejoin="round"/><path d="M4 4.5 3.6 3" stroke="#5C3520" stroke-width="1.6" stroke-linecap="round"/></svg>
         <span id="bananaCount">0</span>
       </div>
-      <button class="icon-btn" id="muteBtn" aria-label="Mute sound" aria-pressed="false"></button>
       <button class="icon-btn" id="pauseBtn" aria-label="Pause">
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.5" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1.5" fill="currentColor"/></svg>
       </button>

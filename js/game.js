@@ -972,15 +972,6 @@ const sfx = {
   multUp(){ [784,988,1319].forEach((f,i) => tone(f,f,0.09,'square',0.045,i*0.06)); },
   comboBreak(){ tone(392,196,0.2,'triangle',0.05); }
 };
-const ICON_SOUND = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';
-const ICON_MUTE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
-function renderMute(){
-  const b = $('muteBtn');
-  b.innerHTML = muted ? ICON_MUTE : ICON_SOUND;
-  b.setAttribute('aria-pressed', muted ? 'true' : 'false');
-  b.setAttribute('aria-label', muted ? 'Turn sound on' : 'Mute sound');
-}
-
 /* ---------- Actions ---------- */
 function moveLeft(){ if(state==='play' && p.lane>0){ p.lane--; sfx.lane(); } }
 function moveRight(){ if(state==='play' && p.lane<2){ p.lane++; sfx.lane(); } }
@@ -1279,11 +1270,10 @@ const hudCache = {};
 function setText(id, v){ if(hudCache[id] !== v){ hudCache[id] = v; $(id).textContent = v; } }
 function updateHUD(){
   setText('score', score().toLocaleString());
-  setText('dist', Math.floor(distance).toLocaleString() + ' m');
   setText('bananaCount', bananas.toLocaleString());
   setText('mult', 'x' + mult);
   $('mult').classList.toggle('hot', mult > 1);
-  setText('comboCount', combo > 0 ? 'Streak ' + combo : '');
+  setText('comboCount', String(combo));
   const fill = swingT > 0 ? swingT/SWING_TIME : meter;
   const w = Math.round(fill*100) + '%';
   if(hudCache.fill !== w){ hudCache.fill = w; $('meterFill').style.width = w; }
@@ -1536,12 +1526,8 @@ $('pauseBtn').addEventListener('click', pause);
 $('restartBtn').addEventListener('click', () => startGame(levelKey));
 $('pauseHomeBtn').addEventListener('click', showMenu);
 $('swingBtn').addEventListener('click', () => { swing(); $('swingBtn').blur(); });
-$('muteBtn').addEventListener('click', () => {
-  muted = !muted; store.set(MUTE_KEY, muted ? '1' : '0'); ensureAudio(); renderMute(); $('muteBtn').blur();
-});
 
 /* ---------- Boot ---------- */
-renderMute();
 renderLives();
 buildSlots();
 applyQuality();
