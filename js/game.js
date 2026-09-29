@@ -1024,7 +1024,6 @@ function showMenu(){
   state = 'menu';
   hideCount();
   reset();
-  renderBests();
   $('overPanel').hidden = true; $('pausePanel').hidden = true; $('hud').hidden = true; $('startPanel').hidden = false;
   $(levelKey === 'beginner' ? 'beginnerBtn' : 'normalBtn').focus();
 }
@@ -1045,10 +1044,6 @@ function renderLives(){
   if(el.children.length !== MAX_LIVES) el.innerHTML = HEART.repeat(MAX_LIVES);
   for(let i=0;i<MAX_LIVES;i++) el.children[i].classList.toggle('lost', i >= lives);
   el.setAttribute('aria-label', lives + ' of ' + MAX_LIVES + ' lives left');
-}
-function renderBests(){
-  $('bestBeginner').textContent = bests.beginner > 0 ? 'Best: ' + bests.beginner.toLocaleString() : '';
-  $('bestNormal').textContent = bests.normal > 0 ? 'Best: ' + bests.normal.toLocaleString() : '';
 }
 function die(o){
   starsAround(p.x, p.y + 2.1, 0);
@@ -1173,6 +1168,14 @@ function renderScoresTab(){
 function closeScores(){
   $('boardPanel').hidden = true; $('startPanel').hidden = false;
   $('scoresBtn').focus();
+}
+function openHowTo(){
+  $('startPanel').hidden = true; $('howToPanel').hidden = false;
+  $('closeHowToBtn').focus();
+}
+function closeHowTo(){
+  $('howToPanel').hidden = true; $('startPanel').hidden = false;
+  $('howToBtn').focus();
 }
 
 function showOver(){
@@ -1524,6 +1527,8 @@ $('levelBtn').addEventListener('click', showMenu);
 $('saveScoreBtn').addEventListener('click', saveEntry);
 $('scoresBtn').addEventListener('click', openScores);
 $('closeBoardBtn').addEventListener('click', closeScores);
+$('howToBtn').addEventListener('click', openHowTo);
+$('closeHowToBtn').addEventListener('click', closeHowTo);
 $('tabBeginner').addEventListener('click', () => { boardTab = 'beginner'; renderScoresTab(); });
 $('tabNormal').addEventListener('click', () => { boardTab = 'normal'; renderScoresTab(); });
 $('resumeBtn').addEventListener('click', resume);
@@ -1537,7 +1542,6 @@ $('muteBtn').addEventListener('click', () => {
 
 /* ---------- Boot ---------- */
 renderMute();
-renderBests();
 renderLives();
 buildSlots();
 applyQuality();

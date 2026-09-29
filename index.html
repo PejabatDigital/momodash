@@ -65,18 +65,34 @@
 </div>
 
 <div class="overlay" id="startPanel">
+  <div class="intro-actions">
+    <h1 class="sr-only">Momo's Temple Dash</h1>
+    <div class="pill-levels">
+      <button class="pill-btn beginner" id="beginnerBtn">Beginner</button>
+      <button class="pill-btn normal" id="normalBtn">Normal</button>
+    </div>
+    <div class="icon-row">
+      <button class="icon-chip" id="scoresBtn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v3a5 5 0 0 1-5 5 5 5 0 0 1-5-5V4z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7 5H4.5A1.5 1.5 0 0 0 3 6.5C3 8.5 4.5 10 7 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M17 5h2.5A1.5 1.5 0 0 1 21 6.5C21 8.5 19.5 10 17 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 12v3m-3 2h6m-3 0v-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><rect x="8" y="17" width="8" height="2.5" rx="1.2" fill="currentColor"/></svg>
+        <span>High Scores</span>
+      </button>
+      <button class="icon-chip" id="howToBtn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9.6 9.3a2.4 2.4 0 0 1 4.6.9c0 1.6-2.2 1.9-2.2 3.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/><circle cx="12" cy="17" r="1.1" fill="currentColor"/></svg>
+        <span>How to Play</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay center" id="howToPanel" hidden>
   <div class="tablet">
-    <h1>Momo's<br>Temple Dash</h1>
+    <h2>How to play</h2>
     <p class="lede">Run through the old jungle temple with Momo. Jump the logs, slide under stone beams, and dodge the walls. You have 5 lives. Grab bananas in a row to push your score multiplier up to x4, and fill your meter for a vine swing over everything.</p>
     <div class="controls">
       <div><strong>Phone or tablet</strong>Swipe left or right to change lanes. Swipe up to jump, down to slide.</div>
       <div><strong>Keyboard</strong>Arrow keys or WASD to move. Press E to swing. P pauses.</div>
     </div>
-    <div class="levels">
-      <button class="level-btn beginner" id="beginnerBtn"><span class="name">Beginner</span><span class="desc">Slow, steady speed the whole way</span><span class="lbest" id="bestBeginner"></span></button>
-      <button class="level-btn normal" id="normalBtn"><span class="name">Normal</span><span class="desc">Starts easy, gets faster as you go</span><span class="lbest" id="bestNormal"></span></button>
-    </div>
-    <button class="ghost" id="scoresBtn">High scores</button>
+    <button class="cta" id="closeHowToBtn">Got it</button>
   </div>
 </div>
 
