@@ -89,10 +89,10 @@ function onSplashDone() {
     panic:   [4.34, 5.2],  // 4. the dot panics...
     fall:    [5.2, 5.95],  //    ...and drops straight down, faster and faster
     land:    [5.95, 7.0],  // 5. bounces, squashes and settles on the i
-    amin:    [5.45, 6.15],
-    digital: [6.05, .45, .05],
-    fade:    [7.55, 8.0],  // Amin Digital holds on screen until here
-    end: 8.0
+    amin:    [5.95, 6.65], // starts right on landing impact
+    digital: [6.55, .45, .05],
+    fade:    [8.05, 8.5],  // Amin Digital holds on screen until here
+    end: 8.5
   };
 
   const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
@@ -112,7 +112,7 @@ function onSplashDone() {
 
   function layout() {
     const vw = innerWidth, vh = innerHeight;
-    const w = Math.min(vw * .8, 600, vh * 1.2) * .8;   // logo at 80%
+    const w = Math.min(vw * .8, 600, vh * 1.2) * .8 * .7;   // logo at 70% of previous size
     logo.style.width = w + 'px';
     logo.style.height = (w * 491 / 1541) + 'px';
     kk.style.fontSize = '100px';
@@ -281,7 +281,7 @@ function onSplashDone() {
   // ---- Sound (only after a tap; browsers block autoplay audio) ----
   let ctx = null;
   function tone(f1, when, len, vol = .08, type = 'sine', f2) {
-    if (!ctx) return;
+    if (!ctx || when < 0) return;
     const o = ctx.createOscillator(), g = ctx.createGain(), s = ctx.currentTime + when;
     o.type = type; o.frequency.setValueAtTime(f1, s);
     if (f2) o.frequency.exponentialRampToValueAtTime(f2, s + len * .9);
@@ -289,22 +289,28 @@ function onSplashDone() {
     g.gain.exponentialRampToValueAtTime(.0001, s + len);
     o.connect(g).connect(ctx.destination); o.start(s); o.stop(s + len + .05);
   }
-  function scheduleSounds() {
-    tone(520, T.dotIn[0] + .05, .18, .1, 'triangle', 780);            // pop
-    tone(300, T.stretch[0], .38, .06, 'sine', 900);                      // stretch open
-    for (let i = 0; i < 6; i++) tone(700 + i * 40, T.squeeze[0] + .3 + i * .05, .05, .03, 'square'); // shake
-    tone(880, T.reform[0], .16, .09, 'triangle', 600);                   // squeeze into a dot
-    for (let i = 0; i < 5; i++) tone(1100 + (i % 2) * 180, T.panic[0] + .05 + i * .1, .07, .04, 'triangle'); // panic
-    tone(1400, T.fall[0], .75, .05, 'sine', 240);                        // falling whistle
-    tone(180, T.land[0], .18, .14, 'sine', 90);                          // bump
-    tone(240, T.land[0] + .52, .12, .08, 'sine', 120);                   // second bump
-    tone(300, T.land[0] + .82, .08, .04, 'sine', 160);
-    tone(1318.5, T.land[0] + .02, 1.1, .07);                             // landed
-    tone(1975.5, T.land[0] + .06, 1.3, .04);
+  const soundEvents = [
+    { time: T.dotIn[0] + .05, f1: 520, len: .18, vol: .1, type: 'triangle', f2: 780 },              // pop
+    { time: T.stretch[0], f1: 300, len: .38, vol: .06, type: 'sine', f2: 900 },                        // stretch open
+    ...Array.from({ length: 6 }, (_, i) => ({ time: T.squeeze[0] + .3 + i * .05, f1: 700 + i * 40, len: .05, vol: .03, type: 'square' })), // shake
+    { time: T.reform[0], f1: 880, len: .16, vol: .09, type: 'triangle', f2: 600 },                     // squeeze into a dot
+    ...Array.from({ length: 5 }, (_, i) => ({ time: T.panic[0] + .05 + i * .1, f1: 1100 + (i % 2) * 180, len: .07, vol: .04, type: 'triangle' })), // panic
+    { time: T.fall[0], f1: 1400, len: .75, vol: .05, type: 'sine', f2: 240 },                          // falling whistle
+    { time: T.land[0], f1: 180, len: .18, vol: .14, type: 'sine', f2: 90 },                            // bump
+    { time: T.land[0] + .52, f1: 240, len: .12, vol: .08, type: 'sine', f2: 120 },                     // second bump
+    { time: T.land[0] + .82, f1: 300, len: .08, vol: .04, type: 'sine', f2: 160 },
+    { time: T.land[0] + .02, f1: 1318.5, len: 1.1, vol: .07, type: 'sine' },                           // landed
+    { time: T.land[0] + .06, f1: 1975.5, len: 1.3, vol: .04, type: 'sine' }
+  ];
+  function scheduleSounds(offset = 0) {
+    for (const e of soundEvents) {
+      if (e.time < offset) continue;
+      tone(e.f1, e.time - offset, e.len, e.vol, e.type, e.f2);
+    }
   }
 
   // ---- Playback ----
-  let raf = 0, t0 = 0, done = false;
+  let raf = 0, t0 = 0, done = false, soundOn = false;
   function finish() {
     if (done) return; done = true;
     if (SHOW_REPLAY) replayBtn.classList.add('show');
@@ -321,6 +327,7 @@ function onSplashDone() {
     layout();
     if (reduce) { render(T.fade[0]); setTimeout(finish, 1200); return; }
     if (withSound) {
+      soundOn = true;
       try { ctx = ctx || new (window.AudioContext || window.webkitAudioContext)(); ctx.resume(); scheduleSounds(); } catch (e) {}
     }
     t0 = performance.now();
@@ -332,8 +339,18 @@ function onSplashDone() {
     render(T.end);
     finish();
   }
-
-  stage.addEventListener('click', skip);
+  // First tap just unlocks sound and lets the animation keep playing;
+  // only a second tap (with sound already on) skips to the end.
+  function enableSound() {
+    if (soundOn || done) return;
+    soundOn = true;
+    try {
+      ctx = ctx || new (window.AudioContext || window.webkitAudioContext)();
+      ctx.resume();
+      scheduleSounds((performance.now() - t0) / 1000);
+    } catch (e) {}
+  }
+  stage.addEventListener('click', () => { if (reduce || soundOn) skip(); else enableSound(); });
   replayBtn.addEventListener('click', e => { e.stopPropagation(); play(true); });
   addEventListener('resize', layout);
 
