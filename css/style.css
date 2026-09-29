@@ -12,6 +12,9 @@
   --scrim:rgba(24,38,26,.45);
   --display:'Lilita One','Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif;
   --body:'Nunito','Segoe UI',system-ui,-apple-system,sans-serif;
+  --splash-navy:#091426;
+  --splash-white:#FFFFFF;
+  --splash-blue:#018DFC;
   box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
@@ -173,6 +176,29 @@ body{
   @keyframes goOut{0%{opacity:1}70%{opacity:1}100%{opacity:0}}
   @keyframes multPop{0%{opacity:1}70%{opacity:1}100%{opacity:0}}
 }
+
+/* Kasah Kod x Amin Digital splash */
+#splash{position:fixed;inset:0;z-index:1000}
+.stage{position:fixed;inset:0;background:#000;cursor:pointer}
+.stage .bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,#0F1D36 0%,var(--splash-navy) 60%,#060E1C 100%);opacity:0}
+.kk{position:absolute;left:50%;top:36%;transform:translate(-50%,-50%);display:flex;align-items:center;
+  font-family:Georgia,"Times New Roman",serif;line-height:1;white-space:nowrap;color:var(--splash-white)}
+.kk .brace{color:var(--splash-blue);display:inline-block;opacity:0}
+.kk .brace.l{margin-right:.22em}
+.kk .brace.r{margin-left:.22em}
+.kk .ch{display:inline-block;opacity:0;will-change:transform,opacity,filter}
+.kk .sp{display:inline-block;width:.28em}
+svg.logo{position:absolute;left:0;top:76%;transform:translateY(-50%);overflow:visible}
+svg.logo .ink{fill:var(--splash-white);opacity:0}
+svg.logo .dl{fill:var(--splash-white);opacity:0}
+.stage .dot{position:absolute;left:0;top:0;background:var(--splash-blue);border-radius:999px;opacity:0;will-change:transform,width,height}
+.stage .veil{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;z-index:5}
+.replay{position:fixed;z-index:10;left:50%;bottom:calc(28px + env(safe-area-inset-bottom,0px));
+  transform:translateX(-50%);font:500 15px/1 -apple-system,"Segoe UI",Roboto,sans-serif;
+  color:#C9D3E3;background:transparent;border:1px solid #2A3A55;border-radius:999px;
+  padding:12px 22px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .4s}
+.replay.show{opacity:1;pointer-events:auto}
+.replay:focus-visible{outline:2px solid var(--splash-blue);outline-offset:3px}
 #hurt{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0;box-shadow:inset 0 0 90px 30px rgba(216,69,46,.7)}
 #hurt.show{animation:hurt .6s ease-out}
 @keyframes hurt{0%{opacity:1}100%{opacity:0}}

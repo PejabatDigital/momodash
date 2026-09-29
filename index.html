@@ -31,6 +31,319 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div id="splash">
+  <div class="stage" id="stage" aria-label="Kasah Kod by Amin Digital">
+    <div class="bg" id="bg"></div>
+
+    <div class="kk" id="kk" aria-hidden="true">
+      <span class="brace l" id="bl">{</span><span id="word"></span><span class="brace r" id="br">}</span>
+    </div>
+
+    <svg class="logo" id="logo" viewBox="0 0 1541 491" aria-hidden="true">
+      <defs><path id="g0" d="M 41.68 -77 C 47.11 -77 51.86 -75.97 55.93 -73.92 C 60.00 -71.86 63.36 -69.02 66 -65.39 C 68.63 -61.76 70.59 -57.64 71.87 -53.01 C 73.16 -48.39 73.81 -43.56 73.81 -38.5 C 73.81 -31.45 72.65 -25.01 70.34 -19.18 C 68.03 -13.36 64.50 -8.70 59.78 -5.21 C 55.05 -1.73 49.01 0 41.68 0 L 13.64 0 C 12.75 0 11.98 -0.32 11.32 -0.98 C 10.67 -1.64 10.34 -2.42 10.34 -3.29 L 10.34 -73.70 C 10.34 -74.57 10.67 -75.34 11.32 -76 C 11.98 -76.66 12.75 -77 13.64 -77 Z M 40.59 -6.48 C 46.82 -6.48 51.84 -7.91 55.65 -10.76 C 59.46 -13.62 62.26 -17.5 64.06 -22.37 C 65.86 -27.25 66.76 -32.63 66.76 -38.5 C 66.76 -42.75 66.26 -46.80 65.28 -50.65 C 64.28 -54.50 62.75 -57.92 60.65 -60.89 C 58.57 -63.85 55.85 -66.20 52.51 -67.92 C 49.17 -69.64 45.20 -70.51 40.59 -70.51 L 16.5 -70.51 L 17.26 -71.5 L 17.26 -5.39 L 16.60 -6.48 Z M 40.59 -6.48"/><path id="g1" d="M 17.26 -3.40 C 17.19 -2.45 16.80 -1.64 16.10 -0.98 C 15.41 -0.32 14.62 0 13.75 0 C 12.71 0 11.89 -0.32 11.26 -0.98 C 10.64 -1.64 10.34 -2.45 10.34 -3.40 L 10.34 -73.59 C 10.34 -74.53 10.67 -75.34 11.32 -76 C 11.98 -76.66 12.82 -77 13.85 -77 C 14.74 -77 15.53 -76.66 16.21 -76 C 16.91 -75.34 17.26 -74.53 17.26 -73.59 Z M 17.26 -3.40"/><path id="g2" d="M 44.87 1.09 C 39.22 1.09 33.98 0.10 29.14 -1.87 C 24.30 -3.85 20.10 -6.61 16.54 -10.17 C 12.99 -13.73 10.22 -17.92 8.25 -22.76 C 6.26 -27.60 5.28 -32.85 5.28 -38.5 C 5.28 -44.14 6.26 -49.38 8.25 -54.21 C 10.22 -59.06 12.99 -63.25 16.54 -66.81 C 20.10 -70.37 24.30 -73.14 29.14 -75.12 C 33.98 -77.10 39.22 -78.09 44.87 -78.09 C 48.75 -78.09 52.51 -77.63 56.14 -76.71 C 59.77 -75.80 63.02 -74.42 65.89 -72.59 C 66.39 -72.22 66.78 -71.80 67.04 -71.32 C 67.30 -70.85 67.43 -70.36 67.43 -69.84 C 67.43 -68.82 67.10 -68 66.43 -67.37 C 65.78 -66.75 65.08 -66.43 64.34 -66.43 C 63.97 -66.43 63.62 -66.48 63.29 -66.59 C 62.97 -66.70 62.66 -66.83 62.37 -66.98 C 59.87 -68.37 57.15 -69.47 54.21 -70.28 C 51.28 -71.09 48.17 -71.5 44.87 -71.5 C 38.57 -71.5 32.96 -70.06 28.04 -67.20 C 23.14 -64.34 19.28 -60.42 16.5 -55.43 C 13.70 -50.44 12.31 -44.80 12.31 -38.5 C 12.31 -32.19 13.70 -26.55 16.5 -21.56 C 19.28 -16.57 23.14 -12.64 28.04 -9.78 C 32.96 -6.92 38.57 -5.5 44.87 -5.5 C 48.17 -5.5 51.49 -5.97 54.82 -6.92 C 58.17 -7.87 61.05 -9.16 63.46 -10.78 L 62.92 -8.46 L 62.92 -33.76 L 64.56 -32.23 L 45.54 -32.23 C 44.58 -32.23 43.77 -32.56 43.10 -33.21 C 42.45 -33.87 42.12 -34.64 42.12 -35.53 C 42.12 -36.55 42.45 -37.35 43.10 -37.93 C 43.77 -38.53 44.58 -38.82 45.54 -38.82 L 66.54 -38.82 C 67.50 -38.82 68.28 -38.51 68.90 -37.89 C 69.53 -37.26 69.84 -36.47 69.84 -35.53 L 69.84 -9.01 C 69.84 -8.42 69.69 -7.87 69.40 -7.35 C 69.11 -6.84 68.71 -6.41 68.20 -6.04 C 64.97 -3.84 61.35 -2.10 57.35 -0.82 C 53.36 0.45 49.20 1.09 44.87 1.09 Z M 44.87 1.09"/><path id="g3" d="M 33.21 0 C 32.19 0 31.37 -0.32 30.75 -0.98 C 30.12 -1.64 29.81 -2.42 29.81 -3.29 L 29.81 -73.37 L 36.62 -73.37 L 36.62 -3.29 C 36.62 -2.42 36.29 -1.64 35.64 -0.98 C 34.98 -0.32 34.17 0 33.21 0 Z M 7.04 -70.73 C 6.16 -70.73 5.38 -71.02 4.71 -71.60 C 4.06 -72.19 3.73 -72.96 3.73 -73.92 C 3.73 -74.79 4.06 -75.52 4.71 -76.10 C 5.38 -76.70 6.16 -77 7.04 -77 L 59.40 -77 C 60.28 -77 61.04 -76.70 61.70 -76.10 C 62.36 -75.52 62.70 -74.75 62.70 -73.81 C 62.70 -72.85 62.36 -72.09 61.70 -71.54 C 61.04 -71.00 60.28 -70.73 59.40 -70.73 Z M 7.04 -70.73"/><path id="g4" d="M 36.07 -68.53 L 9.34 -2.09 C 9.05 -1.35 8.64 -0.80 8.14 -0.43 C 7.62 -0.07 7.03 0.10 6.37 0.10 C 5.35 0.10 4.58 -0.16 4.06 -0.71 C 3.55 -1.26 3.25 -1.94 3.18 -2.75 C 3.11 -3.11 3.14 -3.55 3.29 -4.06 L 32.34 -75.12 C 32.70 -75.93 33.16 -76.50 33.71 -76.82 C 34.26 -77.16 34.91 -77.32 35.64 -77.32 C 36.36 -77.32 37.00 -77.12 37.56 -76.71 C 38.11 -76.32 38.53 -75.78 38.82 -75.12 L 67.76 -4.40 C 67.91 -3.95 67.98 -3.51 67.98 -3.07 C 67.98 -2.05 67.64 -1.26 66.98 -0.71 C 66.32 -0.16 65.56 0.10 64.68 0.10 C 63.94 0.10 63.30 -0.08 62.75 -0.48 C 62.20 -0.89 61.78 -1.42 61.48 -2.09 L 34.09 -68.96 Z M 15.73 -22.21 L 18.48 -28.70 L 52.57 -28.70 L 53.90 -22.21 Z M 15.73 -22.21"/><path id="g5" d="M 52.90 -6.48 C 53.78 -6.48 54.56 -6.17 55.21 -5.54 C 55.87 -4.92 56.20 -4.17 56.20 -3.29 C 56.20 -2.34 55.87 -1.56 55.21 -0.93 C 54.56 -0.31 53.78 0 52.90 0 L 13.64 0 C 12.67 0 11.89 -0.32 11.26 -0.98 C 10.64 -1.64 10.34 -2.42 10.34 -3.29 L 10.34 -73.70 C 10.34 -74.57 10.67 -75.34 11.32 -76 C 11.98 -76.66 12.82 -77 13.85 -77 C 14.74 -77 15.53 -76.66 16.21 -76 C 16.91 -75.34 17.26 -74.57 17.26 -73.70 L 17.26 -4.62 L 15.18 -6.48 Z M 52.90 -6.48"/></defs>
+      <path class="ink" id="ink" fill-rule="evenodd" d="M 439.20 40.49 C 444.99 41.99 478.19 45.96 489.09 79.29 C 491.29 86.02 489.98 102.04 489.82 104.01 C 489.34 109.87 507.33 118.55 493.39 135.58 C 441.37 199.16 375.55 313.97 492.85 254.60 C 592.75 204.03 630.22 123.99 656.84 161.05 C 671.61 181.62 628.34 240.50 651.87 218.25 C 715.31 158.26 759.36 166.76 754.66 234.64 C 754.32 239.53 749.48 259.29 755.99 252.69 C 760.67 247.95 795.09 213.08 823.71 204.41 C 884.10 186.11 850.12 292.05 916.71 271.37 C 939.88 264.17 969.04 244.28 970.80 240.12 C 976.03 227.69 986.79 174.79 1012.73 186.23 C 1037.96 197.35 999.10 238.84 1004.44 264.82 C 1006.92 276.89 1025.42 296.17 1139.51 190.72 C 1142.55 187.91 1154.92 172.36 1170.39 179.51 C 1201.12 193.71 1152.83 255.82 1176.42 233.47 C 1248.07 165.55 1294.82 175.65 1314.85 219.26 C 1332 256.62 1339.46 299.55 1453.92 241.58 C 1498.85 218.82 1521.35 196.41 1527.87 215.89 C 1531.41 226.44 1523.91 232.24 1490.73 254.37 C 1308.44 375.92 1286.05 240.83 1273.69 227.77 C 1242.5 194.75 1162.57 303.15 1143.60 308.17 C 1128.73 312.10 1115.51 297.35 1118.71 282 C 1123.89 257.21 1132 243.02 1124.91 248.21 C 1123.94 248.91 1108.44 263.37 1081.73 280.89 C 984.16 344.88 974.90 277.17 967.97 280.94 C 952.90 289.14 890.11 334.08 850.64 287.42 C 827.35 259.91 841.46 227.73 814.74 244.94 C 770.48 273.46 738.75 332.58 716.63 298.58 C 701.75 275.68 740.92 195.00 699.16 222.07 C 647.81 255.36 611.41 322 587.26 306.28 C 569.87 294.97 583.32 277 603.10 231.32 C 605.57 225.63 619.22 199.93 609.39 209.29 C 546.51 269.14 402.94 354.46 391.73 263.16 C 384.44 203.80 456.16 147.26 407.58 182.34 C 399.29 188.32 149.53 374.58 49.25 365.43 C 39.28 364.52 -14.90 353.53 35.03 286.57 C 128.34 161.45 333.60 33.55 429.85 39.74 C 432.98 39.94 436.08 40.29 439.20 40.49 Z M 266.76 240.02 C 300.22 220.06 388.14 155.92 440.67 122.16 C 451.30 115.33 459.85 97.08 451.92 85.59 C 410.62 25.75 139.64 185.76 57.59 309.10 C 51.73 317.93 41.27 332.92 54.91 333.60 C 114.06 336.54 251.10 249.92 266.76 240.02 Z M 266.76 240.02"/>
+      <g id="digital"><use class="dl" href="#g0" x="542.816" y="457.5717"/><use class="dl" href="#g1" x="698.906" y="457.5717"/><use class="dl" href="#g2" x="803.406" y="457.5717"/><use class="dl" href="#g1" x="956.856" y="457.5717"/><use class="dl" href="#g3" x="1061.356" y="457.5717"/><use class="dl" href="#g4" x="1199.296" y="457.5717"/><use class="dl" href="#g5" x="1347.466" y="457.5717"/></g>
+    </svg>
+
+    <div class="dot" id="dot"></div>
+    <div class="veil" id="veil"></div>
+  </div>
+  <button class="replay" id="replay" type="button">Replay</button>
+</div>
+<script>
+/* Kasah Kod x Amin Digital splash. SHOW_REPLAY stays false in production;
+   flip to true locally to preview the animation with a replay button. */
+const SHOW_REPLAY = false;
+function onSplashDone() {
+  const splash = document.getElementById('splash');
+  splash.style.pointerEvents = 'none';
+  splash.style.transition = 'opacity .6s ease';
+  splash.style.opacity = '0';
+  splash.addEventListener('transitionend', () => splash.remove(), { once: true });
+}
+
+(function () {
+  const $ = id => document.getElementById(id);
+  const stage = $('stage'), bg = $('bg'), kk = $('kk'), bl = $('bl'), br = $('br'), word = $('word');
+  const logo = $('logo'), ink = $('ink'), dot = $('dot'), veil = $('veil'), replayBtn = $('replay');
+  const dls = [...document.querySelectorAll('.dl')];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const letters = [];
+  for (const c of 'kasah kod') {
+    const s = document.createElement('span');
+    if (c === ' ') s.className = 'sp'; else { s.className = 'ch'; s.textContent = c; letters.push(s); }
+    word.appendChild(s);
+  }
+
+  // ---- Timeline (seconds) ----
+  const T = {
+    bg:      [0, .4],
+    dotIn:   [.3, .72],    // 1. starts as a dot
+    stretch: [.8, 1.18],   // 2. dot stretches into a bar...
+    open:    [1.12, 1.7],  //    ...that splits into { } which open out
+    letters: [1.22, .6, .05],
+    squeeze: [3.3, 4.08],  // 3. braces shake and squeeze back together
+    absorb:  [3.3, 3.78],
+    reform:  [4.04, 4.34], //    back to a dot
+    panic:   [4.34, 5.2],  // 4. the dot panics...
+    fall:    [5.2, 5.95],  //    ...and drops straight down, faster and faster
+    land:    [5.95, 7.0],  // 5. bounces, squashes and settles on the i
+    amin:    [5.45, 6.15],
+    digital: [6.05, .45, .05],
+    fade:    [7.55, 8.0],  // Amin Digital holds on screen until here
+    end: 8.0
+  };
+
+  const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+  const prog = ([a, b], t) => clamp((t - a) / (b - a));
+  const lerp = (a, b, p) => a + (b - a) * p;
+  const easeOutCubic = p => 1 - Math.pow(1 - p, 3);
+  const easeInCubic = p => p * p * p;
+  const easeInOut = p => p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+  const easeOutBack = (p, s = 1.7) => 1 + (s + 1) * Math.pow(p - 1, 3) + s * Math.pow(p - 1, 2);
+  // Smooth, organic wobble in the range -1..1 (a blend of sines, so it never looks jittery at 60fps)
+  const wobble = x => (Math.sin(x * 2 * Math.PI) + .55 * Math.sin(x * 2 * Math.PI * 1.73 + 1.3) + .3 * Math.sin(x * 2 * Math.PI * 2.61 + 2.1)) / 1.85;
+  // Damped spring: starts at 1, rings down to 0
+  const smoothstep = p => p * p * (3 - 2 * p);
+
+  // Screen geometry, measured in layout()
+  let G = {};
+
+  function layout() {
+    const vw = innerWidth, vh = innerHeight;
+    const w = Math.min(vw * .8, 600, vh * 1.2) * .8;   // logo at 80%
+    logo.style.width = w + 'px';
+    logo.style.height = (w * 491 / 1541) + 'px';
+    kk.style.fontSize = '100px';
+    const kw = kk.getBoundingClientRect().width || 1;
+    kk.style.fontSize = (100 * Math.min(vw * .74, 520) / kw) + 'px';
+
+    const els = [bl, br, ...letters];
+    const saved = els.map(el => el.style.transform);
+    els.forEach(el => el.style.transform = 'none');
+    const r = kk.getBoundingClientRect();
+    const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    const b = bl.getBoundingClientRect();
+    const braceD = cx - (b.left + b.width / 2);
+    const letterD = letters.map(el => { const q = el.getBoundingClientRect(); return cx - (q.left + q.width / 2); });
+    els.forEach((el, i) => el.style.transform = saved[i]);
+
+    // Line the logo up so the i's dot sits directly below Kasah Kod
+    logo.style.left = (cx - 1035 * (w / 1541)) + 'px';
+    const lr = logo.getBoundingClientRect();
+    const k = lr.width / 1541;
+    G = {
+      cx, cy, braceD, letterD,
+      braceCy: b.top + b.height * .55,
+      ix: lr.left + 1035 * k, iy: lr.top + 114 * k,   // where the i's dot sits
+      r: 43 * k                                        // the i's dot radius
+    };
+  }
+
+  function placeDot(x, y, w, h, op) {
+    dot.style.width = w + 'px'; dot.style.height = h + 'px';
+    dot.style.transform = `translate(${x - w / 2}px, ${y - h / 2}px)`;
+    dot.style.opacity = op;
+  }
+
+  function render(t) {
+    const { cx, braceD, letterD, r } = G;
+    const cy = G.braceCy;
+    bg.style.opacity = easeOutCubic(prog(T.bg, t));
+
+    // ---------- Braces ----------
+    const open = easeInOut(prog(T.open, t));
+    const sq = prog(T.squeeze, t);
+    const closed = braceD * .86;
+    const shakeAmp = sq > 0 ? (1.5 + 3 * sq) : 0;
+    [[bl, 1], [br, -1]].forEach(([el, side]) => {
+      let x = side * lerp(closed, 0, open);
+      x = lerp(x, side * braceD, easeInCubic(sq));
+      x += shakeAmp * wobble(t * 10 + (side > 0 ? 0 : .5));
+      const rot = sq > 0 ? side * 6 * sq * wobble(t * 6.5 + (side > 0 ? .25 : 0)) : 0;
+      const appear = clamp((t - T.open[0]) / .08);
+      const squash = sq > .78 ? lerp(1, .15, easeInCubic((sq - .78) / .22)) : 1;
+      const visible = t >= T.open[0] && t < T.reform[0] + .03;
+      el.style.opacity = visible ? appear : 0;
+      el.style.transform = `translateX(${x}px) rotate(${rot}deg) scale(${lerp(.6, 1, appear) * squash}, ${squash})`;
+    });
+
+    // ---------- Letters ----------
+    letters.forEach((el, i) => {
+      const lp = clamp((t - T.letters[0] - i * T.letters[2]) / T.letters[1]);
+      const e = easeOutBack(lp, 1.9);
+      const g = 1 - lp;
+      const a = easeInOut(prog(T.absorb, t));
+      el.style.opacity = Math.min(clamp(lp * 3), 1 - a);
+      el.style.transform = `translate(${(letterD[i] || 0) * a}px, ${(1 - e) * .55}em) scale(${lerp(.9, 1, lp) * lerp(1, .2, a)})`;
+      el.style.filter = `blur(${g * 6 + a * 3}px)`;
+      el.style.textShadow = g > .01
+        ? `0 ${.18 * g}em 0 rgba(255,255,255,${.25 * g}), 0 ${.36 * g}em 0 rgba(255,255,255,${.12 * g})`
+        : 'none';
+    });
+
+    // ---------- The dot ----------
+    let x = cx, y = cy, sx = 1, sy = 1, op = 0, size = r * 2;
+
+    if (t < T.reform[0]) {
+      // 1–2: pop in, then stretch into a bar that becomes the braces
+      const pin = prog(T.dotIn, t);
+      const s = Math.max(0, easeOutBack(pin, 2.8));
+      const st = easeInOut(prog(T.stretch, t));
+      sx = s * lerp(1, ((braceD - closed) * 2 + r * 1.2) / (r * 2), st);
+      sy = s * lerp(1, .55, st);
+      op = pin > 0 ? 1 - clamp((t - T.open[0]) / .1) : 0;
+    } else {
+      // 3: squeezed back into a dot
+      const rf = prog(T.reform, t);
+      op = 1;
+      sx = lerp(1.6, 1, easeOutBack(rf, 3)); sy = lerp(.45, 1, easeOutBack(rf, 3));
+
+      // 4: panic — trembling that builds, two nervous hops, a peek down, then let go
+      const pn = prog(T.panic, t);
+      if (t >= T.panic[0] && t < T.fall[0]) {
+        const build = smoothstep(pn);
+        x += r * (.12 + .3 * build) * wobble(t * 9);
+        const hop = (a, b, h) => { const v = clamp((pn - a) / (b - a)); return h * Math.sin(Math.PI * v); };
+        const h1 = hop(.1, .3, r * 1.1), h2 = hop(.38, .56, r * .8);
+        y -= h1 + h2;
+        // stretch going up, squash on each little landing
+        const hopStretch = (h1 + h2) / (r * 1.1);
+        sx *= 1 - .1 * hopStretch; sy *= 1 + .12 * hopStretch;
+        const q = .06 * wobble(t * 5);
+        sx *= 1 + q; sy *= 1 - q;
+        if (pn > .66) {                          // wind-up: rise and stretch before the drop
+          const w = smoothstep((pn - .66) / .34);
+          y -= r * .9 * w; sx *= lerp(1, .86, w); sy *= lerp(1, 1.16, w);
+        }
+      }
+
+      // Fall: straight down, accelerating the whole way like gravity
+      if (t >= T.fall[0]) {
+        const f = prog(T.fall, t);
+        const y0 = cy - r * .9;
+        y = lerp(y0, G.iy, f * f);
+        x = cx;
+        const speed = f;                         // velocity grows linearly with time
+        sx = lerp(.86, .7, speed); sy = lerp(1.16, 1.55, speed);
+        y += r * (1 - sy) * f * f;             // lines up with the landing so there's no jump
+      }
+
+      // 5: land on the i — big squash, bounce, smaller bounce, wobbly settle
+      if (t >= T.land[0]) {
+        const τ = t - T.land[0];
+        x = G.ix; y = G.iy;
+        const bounces = [                        // [start, duration, height]
+          [.1, .42, r * 3],
+          [.6, .22, r * 1.1],
+          [.88, .1, r * .3]
+        ];
+        const impacts = [[0, .5], [.52, .28], [.82, .14], [.98, .06]]; // [time, strength]
+        let airStretch = 0;
+        for (const [b0, d, h] of bounces) {
+          const v = (τ - b0) / d;
+          if (v > 0 && v < 1) {
+            y -= h * 4 * v * (1 - v);            // a proper parabola: slows at the top
+            airStretch = .16 * Math.abs(1 - 2 * v) * (h / (r * 3));
+          }
+        }
+        let q = 0;                               // squash from each impact, springing back smoothly
+        for (const [ti, a] of impacts) {
+          const d = τ - ti;
+          if (d < 0) continue;
+          if (d < .1) q += a * Math.sin(Math.PI * d / .1);              // squash down and back
+          else q -= a * .35 * Math.exp(-7 * (d - .1)) * Math.sin(2 * Math.PI * 3.2 * (d - .1)); // springy overshoot
+
+        }
+        sx = (1 + q) * (1 - airStretch * .7);
+        sy = (1 - q * .9) * (1 + airStretch);
+        const fs = smoothstep(clamp(1 - τ / .06)); // hand over smoothly from the falling stretch
+        sx = lerp(sx, .7, fs); sy = lerp(sy, 1.55, fs);
+        y += r * (1 - sy);                       // keep the bottom planted while squashing
+      }
+    }
+    placeDot(x, y, size * sx, size * sy, op);
+
+    // ---------- Amin Digital ----------
+    const ai = easeOutCubic(prog(T.amin, t));
+    ink.style.opacity = ai;
+    ink.style.transform = `translateY(${(1 - ai) * 40}px)`;
+    dls.forEach((el, i) => {
+      const dp = easeOutCubic(clamp((t - T.digital[0] - i * T.digital[2]) / T.digital[1]));
+      el.style.opacity = dp;
+      el.style.transform = `translateY(${(1 - dp) * 40}px)`;
+    });
+
+    veil.style.opacity = easeInOut(prog(T.fade, t));
+  }
+
+  // ---- Sound (only after a tap; browsers block autoplay audio) ----
+  let ctx = null;
+  function tone(f1, when, len, vol = .08, type = 'sine', f2) {
+    if (!ctx) return;
+    const o = ctx.createOscillator(), g = ctx.createGain(), s = ctx.currentTime + when;
+    o.type = type; o.frequency.setValueAtTime(f1, s);
+    if (f2) o.frequency.exponentialRampToValueAtTime(f2, s + len * .9);
+    g.gain.setValueAtTime(0, s); g.gain.linearRampToValueAtTime(vol, s + .012);
+    g.gain.exponentialRampToValueAtTime(.0001, s + len);
+    o.connect(g).connect(ctx.destination); o.start(s); o.stop(s + len + .05);
+  }
+  function scheduleSounds() {
+    tone(520, T.dotIn[0] + .05, .18, .1, 'triangle', 780);            // pop
+    tone(300, T.stretch[0], .38, .06, 'sine', 900);                      // stretch open
+    for (let i = 0; i < 6; i++) tone(700 + i * 40, T.squeeze[0] + .3 + i * .05, .05, .03, 'square'); // shake
+    tone(880, T.reform[0], .16, .09, 'triangle', 600);                   // squeeze into a dot
+    for (let i = 0; i < 5; i++) tone(1100 + (i % 2) * 180, T.panic[0] + .05 + i * .1, .07, .04, 'triangle'); // panic
+    tone(1400, T.fall[0], .75, .05, 'sine', 240);                        // falling whistle
+    tone(180, T.land[0], .18, .14, 'sine', 90);                          // bump
+    tone(240, T.land[0] + .52, .12, .08, 'sine', 120);                   // second bump
+    tone(300, T.land[0] + .82, .08, .04, 'sine', 160);
+    tone(1318.5, T.land[0] + .02, 1.1, .07);                             // landed
+    tone(1975.5, T.land[0] + .06, 1.3, .04);
+  }
+
+  // ---- Playback ----
+  let raf = 0, t0 = 0, done = false;
+  function finish() {
+    if (done) return; done = true;
+    if (SHOW_REPLAY) replayBtn.classList.add('show');
+    onSplashDone();
+  }
+  function tick(now) {
+    const t = (now - t0) / 1000;
+    render(Math.min(t, T.end));
+    if (t < T.end) raf = requestAnimationFrame(tick); else finish();
+  }
+  function play(withSound) {
+    cancelAnimationFrame(raf); done = false;
+    replayBtn.classList.remove('show');
+    layout();
+    if (reduce) { render(T.fade[0]); setTimeout(finish, 1200); return; }
+    if (withSound) {
+      try { ctx = ctx || new (window.AudioContext || window.webkitAudioContext)(); ctx.resume(); scheduleSounds(); } catch (e) {}
+    }
+    t0 = performance.now();
+    raf = requestAnimationFrame(tick);
+  }
+  function skip() {
+    if (done) return;
+    cancelAnimationFrame(raf);
+    render(T.end);
+    finish();
+  }
+
+  stage.addEventListener('click', skip);
+  replayBtn.addEventListener('click', e => { e.stopPropagation(); play(true); });
+  addEventListener('resize', layout);
+
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => {
+    layout(); render(0);
+    setTimeout(() => play(false), 250);
+  });
+})();
+</script>
+
 <canvas id="game" aria-label="Momo's Temple Dash game view"></canvas>
 <div id="hurt"></div>
 <div class="count" id="countdown" aria-live="assertive" hidden></div>
