@@ -404,8 +404,7 @@ function onSplashDone() {
   <div class="intro-actions">
     <h1 class="sr-only">Momo's Temple Dash</h1>
     <div class="pill-levels">
-      <button class="pill-btn beginner" id="beginnerBtn">Beginner</button>
-      <button class="pill-btn normal" id="normalBtn">Normal</button>
+      <button class="pill-btn play" id="playBtn">Play</button>
     </div>
     <div class="icon-row">
       <button class="icon-chip" id="scoresBtn">
@@ -415,6 +414,10 @@ function onSplashDone() {
       <button class="icon-chip" id="howToBtn">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9.6 9.3a2.4 2.4 0 0 1 4.6.9c0 1.6-2.2 1.9-2.2 3.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/><circle cx="12" cy="17" r="1.1" fill="currentColor"/></svg>
         <span>How to Play</span>
+      </button>
+      <button class="icon-chip" id="settingsBtn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 3.5v2.2M12 18.3v2.2M20.5 12h-2.2M5.7 12H3.5M17.8 6.2l-1.6 1.6M7.8 16.2l-1.6 1.6M17.8 17.8l-1.6-1.6M7.8 7.8 6.2 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span>Settings</span>
       </button>
     </div>
   </div>
@@ -444,12 +447,33 @@ function onSplashDone() {
   </div>
 </div>
 
+<div class="overlay center" id="settingsPanel" hidden>
+  <div class="tablet">
+    <h2>Settings</h2>
+    <div class="setting-row">
+      <span class="setting-label">Sound</span>
+      <button class="toggle-pill" id="soundToggleBtn" aria-pressed="true">
+        <span id="soundToggleLabel">On</span>
+      </button>
+    </div>
+    <div class="setting-row">
+      <span class="setting-label">Pace</span>
+      <div class="tabs" role="group" aria-label="Pace">
+        <button class="tab" id="paceBeginner" aria-pressed="false">Beginner</button>
+        <button class="tab" id="paceNormal" aria-pressed="true">Normal</button>
+      </div>
+    </div>
+    <button class="cta" id="closeSettingsBtn">Back</button>
+  </div>
+</div>
+
 <div class="overlay center" id="pausePanel" hidden>
   <div class="tablet">
     <h2>Paused</h2>
     <p class="lede">Momo is catching his breath.</p>
     <button class="cta" id="resumeBtn">Keep running</button>
     <button class="cta" id="restartBtn">Restart</button>
+    <button class="cta" id="pauseSettingsBtn">Settings</button>
     <button class="ghost" id="pauseHomeBtn">Back to home</button>
   </div>
 </div>
@@ -476,7 +500,7 @@ function onSplashDone() {
       <p class="board-title" id="overBoardTitle">High scores</p>
       <ol class="board" id="overBoard"></ol>
       <button class="cta" id="againBtn">Run again</button>
-      <button class="ghost" id="levelBtn">Change level</button>
+      <button class="ghost" id="levelBtn">Back to home</button>
     </div>
   </div>
 </div>

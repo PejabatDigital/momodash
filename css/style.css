@@ -125,10 +125,7 @@ body{
 .pill-levels::after{right:-10px;bottom:-10px;transform:rotate(155deg)}
 .pill-btn{position:relative;font-family:var(--display);font-size:1.55rem;font-weight:400;border:none;border-radius:999px;
   padding:16px 28px;width:100%;cursor:pointer;transition:transform .06s,box-shadow .06s}
-.pill-btn.beginner{background:linear-gradient(180deg,rgba(255,255,255,.4),rgba(255,255,255,0) 50%),#8CC152;
-  color:#fff;-webkit-text-stroke:1.4px #3D6420;text-shadow:0 2px 0 rgba(61,100,32,.4);
-  box-shadow:inset 0 0 0 3px rgba(255,255,255,.4),0 5px 0 #5E8F2E}
-.pill-btn.normal{background:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,0) 50%),#F5C518;
+.pill-btn.play{background:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,0) 50%),#F5C518;
   color:#3A2410;box-shadow:inset 0 0 0 3px rgba(255,255,255,.4),0 5px 0 #B88E0B}
 .pill-btn:active{transform:translateY(3px);box-shadow:inset 0 0 0 3px rgba(255,255,255,.4)}
 .pill-btn:focus-visible,.icon-chip:focus-visible,.ghost:focus-visible{outline:3px solid #24452F;outline-offset:3px}
@@ -169,6 +166,13 @@ body{
 .tabs{display:flex;gap:6px;margin:0 0 12px}
 .tab{flex:1;border:none;border-radius:999px;padding:9px;font-family:var(--display);font-size:1.05rem;background:rgba(58,39,22,.1);color:var(--ink);cursor:pointer}
 .tab[aria-pressed="true"]{background:var(--leaf-deep);color:var(--tablet)}
+.setting-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 16px}
+.setting-row .tabs{margin:0;width:auto}
+.setting-label{font-family:var(--display);font-size:1.1rem;color:var(--leaf-deep)}
+.toggle-pill{background:#FFF8E7;color:#2B1C10;border:2px solid rgba(43,28,16,.15);border-radius:999px;
+  padding:8px 16px;font-family:var(--display);font-size:1rem;cursor:pointer;
+  box-shadow:0 3px 0 rgba(43,28,16,.2),0 3px 8px rgba(0,0,0,.15)}
+.toggle-pill[aria-pressed="false"]{background:rgba(232,206,151,.35);color:var(--ink-soft);box-shadow:none}
 [hidden]{display:none !important}
 .count,.mult-flash{position:fixed;left:0;right:0;z-index:2;text-align:center;pointer-events:none;font-family:var(--display);line-height:1}
 .count{top:36%;font-size:clamp(3.6rem,18vw,7rem);color:#FFF6DC;text-shadow:0 5px 0 #24452F,0 0 24px rgba(0,0,0,.3)}

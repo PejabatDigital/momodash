@@ -9,7 +9,7 @@ const reduceMotion = !!(window.matchMedia && matchMedia('(prefers-reduced-motion
 
 if(!window.THREE){
   document.querySelector('#startPanel .lede').textContent = 'The 3D engine could not load. Check your internet connection and reload the page.';
-  $('beginnerBtn').disabled = true; $('normalBtn').disabled = true;
+  $('playBtn').disabled = true;
   return;
 }
 
@@ -1016,7 +1016,7 @@ function showMenu(){
   hideCount();
   reset();
   $('overPanel').hidden = true; $('pausePanel').hidden = true; $('hud').hidden = true; $('startPanel').hidden = false;
-  $(levelKey === 'beginner' ? 'beginnerBtn' : 'normalBtn').focus();
+  $('playBtn').focus();
 }
 function hurt(o){
   lives--; renderLives();
@@ -1167,6 +1167,31 @@ function openHowTo(){
 function closeHowTo(){
   $('howToPanel').hidden = true; $('startPanel').hidden = false;
   $('howToBtn').focus();
+}
+let settingsFrom = 'start';
+function renderSoundToggle(){
+  $('soundToggleBtn').setAttribute('aria-pressed', muted ? 'false' : 'true');
+  $('soundToggleLabel').textContent = muted ? 'Off' : 'On';
+}
+function renderPaceToggle(){
+  $('paceBeginner').setAttribute('aria-pressed', levelKey === 'beginner' ? 'true' : 'false');
+  $('paceNormal').setAttribute('aria-pressed', levelKey === 'normal' ? 'true' : 'false');
+}
+function setPace(key){
+  levelKey = key; store.set(LEVEL_KEY, key);
+  renderPaceToggle();
+}
+function openSettings(from){
+  settingsFrom = from;
+  $(from === 'pause' ? 'pausePanel' : 'startPanel').hidden = true;
+  renderSoundToggle(); renderPaceToggle();
+  $('settingsPanel').hidden = false;
+  $('closeSettingsBtn').focus();
+}
+function closeSettings(){
+  $('settingsPanel').hidden = true;
+  $(settingsFrom === 'pause' ? 'pausePanel' : 'startPanel').hidden = false;
+  $(settingsFrom === 'pause' ? 'pauseSettingsBtn' : 'settingsBtn').focus();
 }
 
 function showOver(){
@@ -1488,10 +1513,13 @@ window.addEventListener('keydown', e => {
     else if(k==='e' || k==='E' || k==='Shift'){ swing(); }
     else if(k==='p' || k==='P' || k==='Escape'){ pause(); }
   } else if(state === 'paused'){
-    if(k==='p' || k==='P' || k==='Escape'){ resume(); e.preventDefault(); }
+    if(k === 'Escape' && !$('settingsPanel').hidden){ closeSettings(); e.preventDefault(); }
+    else if(k==='p' || k==='P' || k==='Escape'){ resume(); e.preventDefault(); }
   } else if(state === 'over'){
     if(entry) handleEntryKey(e);
     else if(k === 'Enter'){ startGame(levelKey); e.preventDefault(); }
+  } else if(state === 'menu' && k === 'Escape' && !$('settingsPanel').hidden){
+    closeSettings();
   } else if(state === 'menu' && k === 'Escape' && !$('boardPanel').hidden){
     closeScores();
   }
@@ -1510,8 +1538,7 @@ window.addEventListener('pointerup', () => { sw = null; });
 window.addEventListener('pointercancel', () => { sw = null; });
 document.addEventListener('visibilitychange', () => { if(document.hidden) pause(); });
 
-$('beginnerBtn').addEventListener('click', () => startGame('beginner'));
-$('normalBtn').addEventListener('click', () => startGame('normal'));
+$('playBtn').addEventListener('click', () => startGame(levelKey));
 $('againBtn').addEventListener('click', () => startGame(levelKey));
 $('levelBtn').addEventListener('click', showMenu);
 $('saveScoreBtn').addEventListener('click', saveEntry);
@@ -1521,6 +1548,14 @@ $('howToBtn').addEventListener('click', openHowTo);
 $('closeHowToBtn').addEventListener('click', closeHowTo);
 $('tabBeginner').addEventListener('click', () => { boardTab = 'beginner'; renderScoresTab(); });
 $('tabNormal').addEventListener('click', () => { boardTab = 'normal'; renderScoresTab(); });
+$('settingsBtn').addEventListener('click', () => openSettings('start'));
+$('pauseSettingsBtn').addEventListener('click', () => openSettings('pause'));
+$('closeSettingsBtn').addEventListener('click', closeSettings);
+$('soundToggleBtn').addEventListener('click', () => {
+  muted = !muted; store.set(MUTE_KEY, muted ? '1' : '0'); ensureAudio(); renderSoundToggle(); $('soundToggleBtn').blur();
+});
+$('paceBeginner').addEventListener('click', () => setPace('beginner'));
+$('paceNormal').addEventListener('click', () => setPace('normal'));
 $('resumeBtn').addEventListener('click', resume);
 $('pauseBtn').addEventListener('click', pause);
 $('restartBtn').addEventListener('click', () => startGame(levelKey));
