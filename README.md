@@ -1,5 +1,7 @@
 # Momo's Temple Dash
 
+Live at **https://pejabatdigital.github.io/momodash**
+
 A 3D endless runner for the browser. Momo the monkey runs through a jungle temple, jumping logs, sliding under stone beams, and dodging walls while collecting bananas.
 
 ## Features
@@ -47,10 +49,9 @@ python3 -m http.server 8000
 
 ## Deploying
 
-Any static host works, since it's plain HTML, CSS, and JS.
+Live at **https://pejabatdigital.github.io/momodash**
 
-- **GitHub Pages:** push to a repo, then Settings → Pages → deploy from the `main` branch, root folder.
-- **Netlify:** connect the repo with no build command and `.` as the publish directory.
+Hosted on GitHub Pages, deployed from the `main` branch (Settings → Pages → Source: `main`, `/ (root)`). Plain HTML/CSS/JS, no build step.
 
 ## Tuning
 
