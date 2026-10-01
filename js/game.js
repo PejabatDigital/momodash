@@ -1062,16 +1062,42 @@ function qualifies(k, sc){
   const a = loadBoard(k);
   return a.length < BOARD_SIZE || sc > a[a.length-1].s;
 }
-function renderBoard(elId, k, highlightT){
-  const a = loadBoard(k);
+const GLOBAL_BOARD_SIZE = 10;
+function renderBoardList(elId, a, size, highlightT){
   let html = '';
-  for(let i=0;i<BOARD_SIZE;i++){
+  for(let i=0;i<size;i++){
     const e = a[i];
     if(e) html += '<li' + (highlightT && e.t === highlightT ? ' class="me"' : '') + '><span class="rank">' + (i+1) +
       '</span><span class="nm">' + e.n + '</span><span class="sc">' + e.s.toLocaleString() + '</span></li>';
     else html += '<li class="empty"><span class="rank">' + (i+1) + '</span><span class="nm">----</span><span class="sc">0</span></li>';
   }
   $(elId).innerHTML = html;
+}
+function renderBoard(elId, k, highlightT){ renderBoardList(elId, loadBoard(k), BOARD_SIZE, highlightT); }
+let globalReqId = 0;
+function fetchGlobalBoard(level){
+  const reqId = ++globalReqId;
+  $('boardNote').hidden = true;
+  renderBoardList('menuBoard', [], GLOBAL_BOARD_SIZE);
+  fetch('/api/leaderboard?level=' + level)
+    .then(r => { if(!r.ok) throw new Error('bad response'); return r.json(); })
+    .then(data => {
+      if(reqId !== globalReqId) return;
+      const a = (data.entries || []).map(e => ({ n:cleanName(e.n) || '????', s:Math.floor(e.s), t:e.t }));
+      renderBoardList('menuBoard', a, GLOBAL_BOARD_SIZE);
+    })
+    .catch(() => {
+      if(reqId !== globalReqId) return;
+      $('boardNote').textContent = "Couldn't load global scores. Check your connection.";
+      $('boardNote').hidden = false;
+    });
+}
+function submitGlobalScore(level, name, score){
+  fetch('/api/scores', {
+    method:'POST',
+    headers:{ 'content-type':'application/json' },
+    body:JSON.stringify({ level, name, score })
+  }).catch(() => {});
 }
 const UP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 15l7-7 7 7" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const DOWN = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -1119,6 +1145,7 @@ function saveEntry(){
   a.push({ n:name, s:entry.score, t:stamp });
   a.sort((x,y) => y.s - x.s || x.t - y.t);
   store.set(SCORES_KEY + levelKey, JSON.stringify(a.slice(0, BOARD_SIZE)));
+  submitGlobalScore(levelKey, name, entry.score);
   entry = null;
   sfx.power();
   showOverBoard(stamp);
@@ -1145,16 +1172,25 @@ function handleEntryKey(e){
   const f = $('let' + entry.active); if(f && f.focus) f.focus();
 }
 let boardTab = 'normal';
+let boardScope = 'local';
 function openScores(){
   boardTab = levelKey;
+  boardScope = 'local';
+  renderScopeToggle();
   renderScoresTab();
   $('startPanel').hidden = true; $('boardPanel').hidden = false;
   $('closeBoardBtn').focus();
 }
+function renderScopeToggle(){
+  $('scopeLocal').setAttribute('aria-pressed', boardScope === 'local' ? 'true' : 'false');
+  $('scopeGlobal').setAttribute('aria-pressed', boardScope === 'global' ? 'true' : 'false');
+}
 function renderScoresTab(){
   $('tabBeginner').setAttribute('aria-pressed', boardTab === 'beginner' ? 'true' : 'false');
   $('tabNormal').setAttribute('aria-pressed', boardTab === 'normal' ? 'true' : 'false');
-  renderBoard('menuBoard', boardTab);
+  $('boardNote').hidden = true;
+  if(boardScope === 'global') fetchGlobalBoard(boardTab);
+  else renderBoard('menuBoard', boardTab);
 }
 function closeScores(){
   $('boardPanel').hidden = true; $('startPanel').hidden = false;
@@ -1548,6 +1584,8 @@ $('howToBtn').addEventListener('click', openHowTo);
 $('closeHowToBtn').addEventListener('click', closeHowTo);
 $('tabBeginner').addEventListener('click', () => { boardTab = 'beginner'; renderScoresTab(); });
 $('tabNormal').addEventListener('click', () => { boardTab = 'normal'; renderScoresTab(); });
+$('scopeLocal').addEventListener('click', () => { boardScope = 'local'; renderScopeToggle(); renderScoresTab(); });
+$('scopeGlobal').addEventListener('click', () => { boardScope = 'global'; renderScopeToggle(); renderScoresTab(); });
 $('settingsBtn').addEventListener('click', () => openSettings('start'));
 $('pauseSettingsBtn').addEventListener('click', () => openSettings('pause'));
 $('closeSettingsBtn').addEventListener('click', closeSettings);

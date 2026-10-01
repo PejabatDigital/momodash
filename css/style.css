@@ -153,6 +153,7 @@ body{
 .board .rank{color:var(--ink-soft)}
 .board li.me .rank{color:inherit}
 .board .nm{letter-spacing:.14em}
+.board-note{margin:-6px 0 16px;text-align:center;font-size:.85rem;color:var(--ink-soft)}
 .entry-title{margin:0 0 4px;font-weight:800;text-align:center;color:var(--leaf-deep);font-size:1.05rem}
 .entry-hint{margin:0;text-align:center;font-size:.85rem;color:var(--ink-soft)}
 .slots{display:flex;justify-content:center;gap:10px;margin:10px 0 16px}

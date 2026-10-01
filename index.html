@@ -442,7 +442,12 @@ function onSplashDone() {
       <button class="tab" id="tabBeginner" aria-pressed="false">Beginner</button>
       <button class="tab" id="tabNormal" aria-pressed="true">Normal</button>
     </div>
+    <div class="tabs" role="group" aria-label="Scope">
+      <button class="tab" id="scopeLocal" aria-pressed="true">This device</button>
+      <button class="tab" id="scopeGlobal" aria-pressed="false">Global</button>
+    </div>
     <ol class="board" id="menuBoard"></ol>
+    <p class="board-note" id="boardNote" hidden></p>
     <button class="cta" id="closeBoardBtn">Back</button>
   </div>
 </div>
