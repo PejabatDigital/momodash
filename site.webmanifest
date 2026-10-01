@@ -1,7 +1,7 @@
 {
   "name": "Momo's Temple Dash",
   "short_name": "Momo Dash",
-  "start_url": "/momodash/",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#24452F",
   "theme_color": "#24452F",

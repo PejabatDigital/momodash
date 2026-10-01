@@ -15,7 +15,7 @@ if(!window.THREE){
 
 /* ---------- Constants ---------- */
 const LANES = [-2.2, 0, 2.2];
-const START_SPEED = 14, MAX_SPEED = 38;
+const START_SPEED = 11, MAX_SPEED = 20;
 const GRAV = 26, JUMP_V = 9.6;
 const SPAWN_Z = -160;
 const SEG = 12, NSEG = 16;
